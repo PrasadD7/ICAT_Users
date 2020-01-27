@@ -24,7 +24,7 @@ import studentdata.services.IStudentService;
 
 @RestController 
 @RequestMapping("/students")
-@CrossOrigin // origins=*
+@CrossOrigin(origins = "*")
 public class StudentController {
 	
 	@Autowired
@@ -78,7 +78,8 @@ public class StudentController {
 		  }
 	  
 	  @PutMapping("/{stuId}")
-		public ResponseEntity<?> updateStudentDetails(@RequestParam Double marks, @RequestParam Timestamp totalTime,
+		public ResponseEntity<?> updateStudentDetails(@RequestParam Double marks,
+				@RequestParam Timestamp totalTime,
 				@PathVariable int stuId) {
 			System.out.println("in update stu " + stuId + " " + marks + " " + totalTime);
 

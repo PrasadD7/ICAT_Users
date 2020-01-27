@@ -16,7 +16,7 @@ import studentdata.services.EmailService;
 
 @RestController 
 @RequestMapping("/sendmail")
-@CrossOrigin // origins=*
+@CrossOrigin(origins = "*")
 public class SendMailController{
 	
 	@Autowired
