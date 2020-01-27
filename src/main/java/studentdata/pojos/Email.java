@@ -4,6 +4,8 @@ public class Email {
 	private String destEmail;
 	private String message;
 	private String subject;
+	
+	
 	public String getDestEmail() {
 		return destEmail;
 	}

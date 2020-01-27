@@ -1,35 +1,44 @@
 package studentdata.controller;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import studentdata.pojos.Email;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-@Controller
-@RequestMapping("/email")
-public class SendMailController {
-	@Autowired
-	private JavaMailSender sender;
+import studentdata.services.EmailService;
+
+@RestController 
+@RequestMapping("/sendmail")
+@CrossOrigin // origins=*
+public class SendMailController{
 	
-	@RequestMapping
-	public String showForm(Email e)
-	{
-	//	m.addAttribute(new Email());
-		return "send_mail";
+	@Autowired
+	private EmailService em = new EmailService();
+	
+	@PostConstruct
+	public void init() {
+		System.out.println("in init " + this.em);
 	}
-	@RequestMapping(method=RequestMethod.POST)
-	public String processForm( Email em,BindingResult res)
-	{
-		System.out.println(em.getDestEmail()+"  "+em.getMessage());
-		SimpleMailMessage mesg=new SimpleMailMessage();
-		mesg.setTo(em.getDestEmail());
-		mesg.setSubject(em.getSubject());
-		mesg.setText(em.getMessage());
-		sender.send(mesg);
-		return "sent-mail";
-	}
+	
+	
+	 @PostMapping 
+	  public ResponseEntity<?> sendMail(@RequestBody Email e) {
+
+		  try {  
+			  em.sendEmail(e);
+			  return new ResponseEntity<String>("Mail sent successfully", HttpStatus.OK); }
+		  catch (RuntimeException e1) 
+		  {
+			  e1.printStackTrace();// only for debugging
+
+			  return new ResponseEntity<Void> (HttpStatus.INTERNAL_SERVER_ERROR);
+		  }
+	  }
 }

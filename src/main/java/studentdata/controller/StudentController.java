@@ -26,6 +26,7 @@ import studentdata.services.IStudentService;
 @RequestMapping("/students")
 @CrossOrigin // origins=*
 public class StudentController {
+	
 	@Autowired
 	private IStudentService service;
 	
@@ -53,7 +54,7 @@ public class StudentController {
 			return new ResponseEntity<Student>(stuDetails, HttpStatus.OK);
 		}
 		
-		// REST req handling method to add student dtls
+		// REST request handling method to add student details
 	
 	  @PostMapping 
 	  public ResponseEntity<?> saveStudentDetails(@RequestBody Student s) {
@@ -77,7 +78,7 @@ public class StudentController {
 		  }
 	  
 	  @PutMapping("/{stuId}")
-		public ResponseEntity<?> updateEmpDtls(@RequestParam Double marks, @RequestParam Timestamp totalTime,
+		public ResponseEntity<?> updateStudentDetails(@RequestParam Double marks, @RequestParam Timestamp totalTime,
 				@PathVariable int stuId) {
 			System.out.println("in update stu " + stuId + " " + marks + " " + totalTime);
 

@@ -16,15 +16,20 @@ public class Student extends AbstractEntity {
 	
 	 @Column(name = "Name")
 	  private String name;
+	 
 	 @Column(name = "Email")
 	  private String email;
+	 
 	 @Column(name = "Password")
 	  private String password;
-	 @Column(name = "Mobile NO")
+	 
+	 @Column(name = "MobileNo")
 	  private String mobile;
+	 
 	 @OneToOne(cascade = CascadeType.ALL,optional=true)
 	    @JoinColumn(name="result_id",referencedColumnName = "id")
 	 private Result result;
+	 
 	public Student() {
 		super();
 		
