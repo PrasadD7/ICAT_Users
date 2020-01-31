@@ -11,13 +11,16 @@ public class Result extends AbstractEntity {
 	@Column(name="Marks")
     private Double StudentMarks;
 	@Column(name="TotalTime")
-	private Timestamp TotalTime;
+	private int TotalTime;
 	 @OneToOne(mappedBy = "result")
 	private Student student;
 	public Result() {
 		super();
 	}
-	public Result(Double studentMarks, Timestamp totalTime) {
+	
+	
+	
+	public Result(Double studentMarks, int totalTime) {
 		super();
 		StudentMarks = studentMarks;
 		TotalTime = totalTime;
@@ -28,10 +31,10 @@ public class Result extends AbstractEntity {
 	public void setStudentMarks(Double studentMarks) {
 		StudentMarks = studentMarks;
 	}
-	public Timestamp getTotalTime() {
+	public int getTotalTime() {
 		return TotalTime;
 	}
-	public void setTotalTime(Timestamp totalTime) {
+	public void setTotalTime(int totalTime) {
 		TotalTime = totalTime;
 	}
 	

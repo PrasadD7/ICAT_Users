@@ -15,11 +15,13 @@ public class EmailService {
 		
 	}
 	
-	private JavaMailSender javaMailSender;
 	@Autowired
+	private JavaMailSender javaMailSender;
+	
+	/*@Autowired
 	public EmailService(JavaMailSender javaMailSender) {
 		this.javaMailSender =javaMailSender;
-	}
+	}*/
 	
 	public void sendEmail(Email em) throws MailException {
 		SimpleMailMessage mail=new SimpleMailMessage();

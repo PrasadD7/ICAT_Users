@@ -1,6 +1,5 @@
 package studentdata.controller;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -77,9 +76,9 @@ public class StudentController {
 		  return new ResponseEntity<>(HttpStatus.OK);
 		  }
 	  
-	  @PutMapping("/{stuId}")
+	  @PostMapping("/addresult/{stuId}")
 		public ResponseEntity<?> updateStudentDetails(@RequestParam Double marks,
-				@RequestParam Timestamp totalTime,
+				@RequestParam int totalTime,
 				@PathVariable int stuId) {
 			System.out.println("in update stu " + stuId + " " + marks + " " + totalTime);
 

@@ -28,11 +28,11 @@ public class Student extends AbstractEntity {
 	 
 	 @OneToOne(cascade = CascadeType.ALL,optional=true)
 	    @JoinColumn(name="result_id",referencedColumnName = "id")
-	 private Result result;
+	 private Result result = new Result();;
 	 
 	public Student() {
 		super();
-		
+		this.result = new Result(0.0,0);
 	}
 	public Student(String name, String email, String password, String mobile) {
 		super();
@@ -40,7 +40,7 @@ public class Student extends AbstractEntity {
 		this.email = email;
 		this.password = password;
 		this.mobile = mobile;
-		
+		this.result = new Result(0.0,0);
 	}
 	
 	
@@ -71,12 +71,11 @@ public class Student extends AbstractEntity {
 	public Result getResult() {
 		return result;
 	}
-	public void setResult(Double marks,Timestamp totalTime) {
-		result.setStudentMarks(marks);
-		result.setTotalTime(totalTime);
+	public void setResult(Double marks,int totalTime) {
+		this.result = new Result(marks,totalTime);
+		this.result.setId(this.getId());
 	}
 	 
 	 
-
 
 }
